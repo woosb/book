@@ -1,22 +1,37 @@
 package com.accountBook.book.domain.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class Company {
 
-    @Id @GeneratedValue
-    private Long id;
+    public Company(String code, String name, String kindOfMarket, String sectors_code, String sectors_name){
+        this.code = code;
+        this.name = name;
+        this.kindOfMarket = kindOfMarket;
+        this.sectors_code = sectors_code;
+        this.sectors_name = sectors_name;
+    }
 
-    private String key;
+    @Id @GeneratedValue
+    private Long CompanyId;
+
+    @OneToMany(mappedBy = "company", cascade= CascadeType.ALL)
+    public List<FinancialPosition> financialPositionList = new ArrayList<>();
+
+    private String code;
     private String name;
-    private String subject;
-    private String subject_eng;
-    private String amount;
-    private String ymd;
-    private String mm;
-    private String quarter_kr;
+    private String kindOfMarket;
+    private String sectors_code;
+    private String sectors_name;
 
 }
