@@ -26,6 +26,7 @@ public class Company {
     private Long CompanyId;
 
     @OneToMany(mappedBy = "company", cascade= CascadeType.ALL)
+//    @JsonManagedReference
     public List<FinancialPosition> financialPositionList = new ArrayList<>();
 
     private String code;
@@ -33,5 +34,4 @@ public class Company {
     private String kindOfMarket;
     private String sectors_code;
     private String sectors_name;
-
 }

@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.List;
 
 @Controller
-@RequestMapping("/test")
+@RequestMapping("/company")
 @RequiredArgsConstructor
 public class CompanyController {
 
@@ -19,7 +19,7 @@ public class CompanyController {
 
     @RequestMapping("/getCompany")
     public String getCompany(){
-        String location = "D:\\dartProgram\\2022_1분기보고서_01_재무상태표_20220608utf82.txt";
+        String location = "D:\\dartProgram\\2022_1분기보고서_01_재무상태표_20220608utf8.txt";
         TextFileReader tfr = new TextFileReader();
         List<Company> list = null;
         try {

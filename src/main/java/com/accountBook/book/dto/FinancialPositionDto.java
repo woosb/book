@@ -1,27 +1,15 @@
-package com.accountBook.book.domain.entity;
-
+package com.accountBook.book.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-
-@Entity
+@Builder
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class FinancialPosition {
+public class FinancialPositionDto {
 
-    @Id
-    @GeneratedValue
     private Long FinancialId;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="company_id")
-//    @JsonBackReference
-    private Company company;
-
     private String assets;                     // 자산총계
     private String liabilities;                // 부채총계
     private String equityAndLiabilities;       // 자본과 부채총계
@@ -35,4 +23,5 @@ public class FinancialPosition {
     private String ymd;                        // 결산기준일
     private String mm;                         // 결산월
     private String kindOfReport;               // 보고서종류
+
 }

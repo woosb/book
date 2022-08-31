@@ -12,7 +12,6 @@ import java.util.*;
 
 public class TextFileReader {
     public List<Company> getFile(String location)  throws IOException {
-        System.out.println("getFile!!");
         BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(location)));
         String line = null;
         Set<String> set = new HashSet<>();
@@ -32,7 +31,7 @@ public class TextFileReader {
         subjects.add("ifrs-full_NoncurrentLiabilities");
 
         List<Company> companies = new ArrayList<>();
-
+        br.readLine();
         while ((line = br.readLine()) != null){
             String[] splits = line.split("\t");
             String subject_eng = splits[10].trim();
@@ -60,8 +59,7 @@ public class TextFileReader {
             if(map.containsKey(com.getCode())){
                 List<SubjectValue> subjectValues = map.get(com.getCode());
                 FinancialPosition fip = new FinancialPosition();
-                fip.setCompany(com);
-
+//                fip.setCompany(com);
                 for(SubjectValue sub : subjectValues){
                     switch(sub.getName()){
                         case "ifrs-full_Assets": {
