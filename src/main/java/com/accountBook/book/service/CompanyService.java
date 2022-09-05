@@ -1,6 +1,7 @@
 package com.accountBook.book.service;
 
 import com.accountBook.book.domain.entity.Company;
+import com.accountBook.book.domain.entity.FinancialPosition;
 import com.accountBook.book.domain.repository.CompanyRepository;
 import com.accountBook.book.dto.CompanyDto;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.function.Function;
+import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
@@ -22,14 +23,13 @@ public class CompanyService {
     public void saveAll(List<Company> list) {
         companyRepository.saveAll(list);
     }
+
     public Page<CompanyDto> findAll(Pageable pageable) {
-        Page<CompanyDto> companyDtos = companyRepository.findAll(pageable).map(new Function<Company, CompanyDto>() {
-            @Override
-            public CompanyDto apply(Company company) {
-                CompanyDto dto = CompanyDto.builder().CompanyId(company.getCompanyId()).code(company.getCode()).kindOfMarket(company.getKindOfMarket()).name(company.getName()).sectors_name(company.getSectors_name()).sectors_code(company.getSectors_code()).build();
-                return dto;
-            }
-        });
-        return companyDtos;
+        return companyRepository.findAll(pageable).map(company -> CompanyDto.builder().CompanyId(company.getCompanyId()).code(company.getCode()).kindOfMarket(company.getKindOfMarket()).name(company.getName()).sectors_name(company.getSectors_name()).sectors_code(company.getSectors_code()).build());
+    }
+
+    public List<FinancialPosition> findPositionListByCompanyId(Long id){
+        Optional<Company> companyOptional = companyRepository.findById(id);
+        return companyOptional.map(Company::getFinancialPositionList).orElse(null);
     }
 }
