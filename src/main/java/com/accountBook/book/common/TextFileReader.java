@@ -103,6 +103,7 @@ public class TextFileReader {
                         break;
                     }
                 }
+                fip.setCompany(com);
                 com.financialPositionList.add(fip);
             }
         }
