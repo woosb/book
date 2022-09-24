@@ -20,9 +20,9 @@ public class CompanyController {
     private final CompanyService companyService;
 
     @RequestMapping("/setCompany")
-    public String getCompany() throws IOException {
+    public String setCompany() throws IOException {
 
-        ClassPathResource resource = new ClassPathResource("/dart/2022_1분기보고서_01_재무상태표_20220608utf82.txt");
+        ClassPathResource resource = new ClassPathResource("/dart/2022_1분기보고서_01_재무상태표_20220608utf8.txt");
         File file = resource.getFile();
 
         TextFileReader tfr = new TextFileReader();
@@ -33,6 +33,6 @@ public class CompanyController {
             e.printStackTrace();
         }
         companyService.saveAll(list);
-        return "hello";
+        return "index";
     }
 }
