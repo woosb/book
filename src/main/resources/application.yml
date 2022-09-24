@@ -17,6 +17,13 @@ spring:
         #        show_sql: true system.out.println 으로 출력한다.
         format_sql: true
 
+  devtools:
+    restart:
+      enabled: true
+
+  thymeleaf:
+    cache: false
+
 logging:
   level:
     org.hibernate.SQL: debug # log 로 출력해준다.
