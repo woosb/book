@@ -19,7 +19,7 @@ public class CompanyController {
 
     private final CompanyService companyService;
 
-    @RequestMapping("/getCompany")
+    @RequestMapping("/setCompany")
     public String getCompany() throws IOException {
 
         ClassPathResource resource = new ClassPathResource("/dart/2022_1분기보고서_01_재무상태표_20220608utf82.txt");

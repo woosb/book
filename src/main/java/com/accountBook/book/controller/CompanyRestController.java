@@ -1,7 +1,7 @@
 package com.accountBook.book.controller;
 
-import com.accountBook.book.domain.entity.FinancialPosition;
 import com.accountBook.book.dto.CompanyDto;
+import com.accountBook.book.dto.FinancialPositionDto;
 import com.accountBook.book.service.CompanyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -17,16 +17,14 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CompanyRestController {
     private final CompanyService companyService;
-    @RequestMapping("/get")
+    @RequestMapping("/")
     public List<CompanyDto> getCompany(Pageable pageable, Model model){
+        //http://localhost:8080/company/?page=0&size=3&sort=name,ASC
         return companyService.findAll(pageable).getContent();
     }
 
-    @RequestMapping("financialPosition/get/{companyId}")
-    public List<FinancialPosition> getFinancialPosition(@PathVariable("companyId") Long companyId, Model model){
-        // financialposition -> financialpositionDto 로 변경해야함
-        System.out.println(companyId);
-        System.out.println(companyService.findPositionListByCompanyId(companyId));
+    @RequestMapping("financialPosition/{companyId}")
+    public List<FinancialPositionDto> getFinancialPosition(@PathVariable("companyId") Long companyId, Model model){
         return companyService.findPositionListByCompanyId(companyId);
     }
 }
