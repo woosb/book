@@ -4,18 +4,12 @@ import com.accountBook.book.domain.entity.Company;
 import com.accountBook.book.domain.entity.FinancialPosition;
 import com.accountBook.book.dto.SubjectValue;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.*;
 
 public class TextFileReader {
-    public List<Company> getFile(String location)  throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(location)));
-        String line = null;
-        Set<String> set = new HashSet<>();
-        String CODE;
+    public List<Company> getFile(File file)  throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
 
         HashMap<String, List<SubjectValue>> map = new HashMap<>();
 
@@ -32,10 +26,10 @@ public class TextFileReader {
 
         List<Company> companies = new ArrayList<>();
         br.readLine();
+        String line;
         while ((line = br.readLine()) != null){
             String[] splits = line.split("\t");
             String subject_eng = splits[10].trim();
-            String subject = splits[11];
             String code = splits[1].replace("[", "").replace("]", "").trim();
             String name = splits[2].trim();
             String kindOfMarket = splits[3].trim();
@@ -61,46 +55,21 @@ public class TextFileReader {
                 FinancialPosition fip = new FinancialPosition();
 //                fip.setCompany(com);
                 for(SubjectValue sub : subjectValues){
-                    switch(sub.getName()){
-                        case "ifrs-full_Assets": {
+                    switch (sub.getName()) {
+                        case "ifrs-full_Assets" -> {
                             fip.setAssets(sub.getValue());
                             fip.setYmd(sub.getYmd());
                             fip.setMm(sub.getMm());
                             fip.setKindOfReport(sub.getKindOfReport());
                         }
-                        break;
-                        case "ifrs-full_Liabilities": {
-                            fip.setLiabilities(sub.getValue());
-                        }
-                        break;
-                        case "ifrs-full_EquityAndLiabilities": {
-                            fip.setEquityAndLiabilities(sub.getValue());
-                        }
-                        break;
-                        case "ifrs-full_CashAndCashEquivalents": {
-                            fip.setCashAndCashEquivalents(sub.getValue());
-                        }
-                        break;
-                        case "ifrs-full_RetainedEarnings": {
-                            fip.setRetainedEarnings(sub.getValue());
-                        }
-                        break;
-                        case "ifrs-full_CurrentAssets": {
-                            fip.setCurrentAssets(sub.getValue());
-                        }
-                        break;
-                        case "ifrs-full_NoncurrentAssets": {
-                            fip.setNoncurrentAssets(sub.getValue());
-                        }
-                        break;
-                        case "ifrs-full_CurrentLiabilities": {
-                            fip.setCurrentLiabilities(sub.getValue());
-                        }
-                        break;
-                        case "ifrs-full_NoncurrentLiabilities": {
-                            fip.setNoncurrentLiabilities(sub.getValue());
-                        }
-                        break;
+                        case "ifrs-full_Liabilities"            -> fip.setLiabilities(sub.getValue());
+                        case "ifrs-full_EquityAndLiabilities"   -> fip.setEquityAndLiabilities(sub.getValue());
+                        case "ifrs-full_CashAndCashEquivalents" -> fip.setCashAndCashEquivalents(sub.getValue());
+                        case "ifrs-full_RetainedEarnings"       -> fip.setRetainedEarnings(sub.getValue());
+                        case "ifrs-full_CurrentAssets"          -> fip.setCurrentAssets(sub.getValue());
+                        case "ifrs-full_NoncurrentAssets"       -> fip.setNoncurrentAssets(sub.getValue());
+                        case "ifrs-full_CurrentLiabilities"     -> fip.setCurrentLiabilities(sub.getValue());
+                        case "ifrs-full_NoncurrentLiabilities"  -> fip.setNoncurrentLiabilities(sub.getValue());
                     }
                 }
                 fip.setCompany(com);
