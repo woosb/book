@@ -28,13 +28,13 @@ public class CompanyService {
 
     public Page<CompanyDto> findAll(Pageable pageable) {
         return companyRepository.findAll(pageable).map(company -> CompanyDto.builder()
-                .CompanyId(company.getCompanyId())
+                .companyId(company.getCompanyId())
                 .code(company.getCode())
                 .kindOfMarket(company.getKindOfMarket())
                 .name(company.getName())
-                .sectors_name(company.getSectors_name())
-                .sectors_code(company.getSectors_code())
-                .financialPositionDtos(findPositionListByCompanyId(company.getCompanyId()))
+                .sectors_name(company.getSectorsName())
+                .sectors_code(company.getSectorsCode())
+//                .financialPositionDtos(findPositionListByCompanyId(company.getCompanyId()))
                 .build());
     }
 

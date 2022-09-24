@@ -18,8 +18,8 @@ public class Company {
         this.code = code;
         this.name = name;
         this.kindOfMarket = kindOfMarket;
-        this.sectors_code = sectors_code;
-        this.sectors_name = sectors_name;
+        this.sectorsCode = sectors_code;
+        this.sectorsName = sectors_name;
     }
 
     @Id @GeneratedValue
@@ -39,6 +39,6 @@ public class Company {
     private String code;
     private String name;
     private String kindOfMarket;
-    private String sectors_code;
-    private String sectors_name;
+    private String sectorsCode;
+    private String sectorsName;
 }
