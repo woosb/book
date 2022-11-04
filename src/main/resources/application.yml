@@ -11,10 +11,10 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     properties:
       hibernate:
-        #        show_sql: true system.out.println 으로 출력한다.
+        #show_sql: true system.out.println 으로 출력한다.
         format_sql: true
 
   devtools:

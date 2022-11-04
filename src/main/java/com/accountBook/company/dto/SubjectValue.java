@@ -1,4 +1,4 @@
-package com.accountBook.book.dto;
+package com.accountBook.company.dto;
 
 import lombok.Data;
 

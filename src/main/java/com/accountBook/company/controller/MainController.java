@@ -1,4 +1,4 @@
-package com.accountBook.book.controller;
+package com.accountBook.company.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

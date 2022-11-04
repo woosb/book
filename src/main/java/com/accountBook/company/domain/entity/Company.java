@@ -1,4 +1,4 @@
-package com.accountBook.book.domain.entity;
+package com.accountBook.company.domain.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,8 +22,9 @@ public class Company {
         this.sectorsName = sectors_name;
     }
 
-    @Id @GeneratedValue
-    private Long CompanyId;
+    @Id
+    @GeneratedValue
+    private Long companyId;
 
     @OneToMany(mappedBy = "company", cascade= CascadeType.ALL)
     /*

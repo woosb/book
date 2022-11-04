@@ -1,4 +1,4 @@
-package com.accountBook.book.domain.entity;
+package com.accountBook.company.domain.entity;
 
 
 import lombok.AllArgsConstructor;
@@ -8,9 +8,9 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 public class FinancialPosition {
 
     @Id

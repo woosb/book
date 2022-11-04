@@ -1,6 +1,6 @@
-package com.accountBook.book.domain.repository;
+package com.accountBook.company.domain.repository;
 
-import com.accountBook.book.domain.entity.Company;
+import com.accountBook.company.domain.entity.Company;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

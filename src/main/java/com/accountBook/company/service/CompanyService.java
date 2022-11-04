@@ -1,10 +1,10 @@
-package com.accountBook.book.service;
+package com.accountBook.company.service;
 
-import com.accountBook.book.domain.entity.Company;
-import com.accountBook.book.domain.entity.FinancialPosition;
-import com.accountBook.book.domain.repository.CompanyRepository;
-import com.accountBook.book.dto.CompanyDto;
-import com.accountBook.book.dto.FinancialPositionDto;
+import com.accountBook.company.domain.entity.Company;
+import com.accountBook.company.domain.entity.FinancialPosition;
+import com.accountBook.company.domain.repository.CompanyRepository;
+import com.accountBook.company.dto.CompanyDto;
+import com.accountBook.company.dto.FinancialPositionDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -1,4 +1,4 @@
-package com.accountBook.book;
+package com.accountBook;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

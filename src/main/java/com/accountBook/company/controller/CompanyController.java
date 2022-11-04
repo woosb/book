@@ -1,8 +1,8 @@
-package com.accountBook.book.controller;
+package com.accountBook.company.controller;
 
-import com.accountBook.book.common.TextFileReader;
-import com.accountBook.book.domain.entity.Company;
-import com.accountBook.book.service.CompanyService;
+import com.accountBook.company.common.TextFileReader;
+import com.accountBook.company.domain.entity.Company;
+import com.accountBook.company.service.CompanyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;

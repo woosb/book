@@ -1,8 +1,8 @@
-package com.accountBook.book.common;
+package com.accountBook.company.common;
 
-import com.accountBook.book.domain.entity.Company;
-import com.accountBook.book.domain.entity.FinancialPosition;
-import com.accountBook.book.dto.SubjectValue;
+import com.accountBook.company.domain.entity.Company;
+import com.accountBook.company.domain.entity.FinancialPosition;
+import com.accountBook.company.dto.SubjectValue;
 
 import java.io.*;
 import java.util.*;

@@ -1,6 +1,6 @@
-package com.accountBook.book.dto;
+package com.accountBook.company.dto;
 
-import com.accountBook.book.domain.entity.FinancialPosition;
+import com.accountBook.company.domain.entity.FinancialPosition;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

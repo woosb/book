@@ -1,8 +1,8 @@
-package com.accountBook.book.controller;
+package com.accountBook.company.controller;
 
-import com.accountBook.book.dto.CompanyDto;
-import com.accountBook.book.dto.FinancialPositionDto;
-import com.accountBook.book.service.CompanyService;
+import com.accountBook.company.dto.CompanyDto;
+import com.accountBook.company.dto.FinancialPositionDto;
+import com.accountBook.company.service.CompanyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.ui.Model;
@@ -19,7 +19,7 @@ public class CompanyRestController {
     private final CompanyService companyService;
     @RequestMapping("/")
     public List<CompanyDto> getCompany(Pageable pageable, Model model){
-        //http://localhost:8080/company/?page=0&size=3&sort=name,ASC
+        http://localhost:8080/company/?page=0&size=30&sort=sectorsName,ASC&sort=code,DESC
         return companyService.findAll(pageable).getContent();
     }
 
