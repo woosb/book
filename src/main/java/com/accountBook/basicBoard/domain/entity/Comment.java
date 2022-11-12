@@ -7,9 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @AllArgsConstructor
@@ -23,7 +21,7 @@ public class Comment {
     private Long commentId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="post_id")
+    @JoinColumn(name="post_id", nullable = false)
     private Post post;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -31,7 +29,7 @@ public class Comment {
     private Comment parent;
 
     @OneToMany(mappedBy = "parent", orphanRemoval = true)
-    private List<Comment> children = new ArrayList<>();
+    private List<Comment> children;
 
     @Column(nullable = false, length = 1000)
     private String content;
@@ -42,17 +40,4 @@ public class Comment {
 
     @Embedded
     private TimeEntity timeEntity;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Comment comment = (Comment) o;
-        return Objects.equals(commentId, comment.commentId) && Objects.equals(post, comment.post) && Objects.equals(content, comment.content);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(commentId, post, content);
-    }
 }

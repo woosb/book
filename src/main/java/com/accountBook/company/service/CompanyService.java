@@ -1,53 +1,52 @@
 package com.accountBook.company.service;
 
 import com.accountBook.company.domain.entity.Company;
-import com.accountBook.company.domain.entity.FinancialPosition;
+import com.accountBook.company.domain.entity.BalanceSheet;
 import com.accountBook.company.domain.repository.CompanyRepository;
 import com.accountBook.company.dto.CompanyDto;
-import com.accountBook.company.dto.FinancialPositionDto;
+import com.accountBook.company.dto.BalanceSheetDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
-@Transactional(readOnly = true)
+@Transactional
 @RequiredArgsConstructor
 public class CompanyService {
-
     private final CompanyRepository companyRepository;
-    @Transactional
-    public void saveAll(List<Company> list) {
-        companyRepository.saveAll(list);
+
+    public void saveAll(List<CompanyDto> list){
+        companyRepository.saveAll(list.stream().map((dto) -> dto.toEntity()).collect(Collectors.toList()));
     }
 
-    public Page<CompanyDto> findAll(Pageable pageable) {
-        return companyRepository.findAll(pageable).map(company -> CompanyDto.builder()
-                .companyId(company.getCompanyId())
-                .code(company.getCode())
-                .kindOfMarket(company.getKindOfMarket())
-                .name(company.getName())
-                .sectors_name(company.getSectorsName())
-                .sectors_code(company.getSectorsCode())
-//                .financialPositionDtos(findPositionListByCompanyId(company.getCompanyId()))
-                .build());
+    public void saveAllEntity(List<Company> companies){
+        companyRepository.saveAll(companies);
     }
 
-    public List<FinancialPositionDto> findPositionListByCompanyId(Long id){
-        Optional<Company> companyOptional = companyRepository.findById(id);
-        List<FinancialPosition> financialPositions = companyOptional.map(Company::getFinancialPositionList).orElse(null);
+    public void save(Company company){
+        System.out.println("service save");
+        System.out.println(company);
+        companyRepository.save(company);
+    }
 
-        List<FinancialPositionDto> financialPositionDtos = new ArrayList<>();
-        assert financialPositions != null;
-        for(FinancialPosition financialPosition : financialPositions){
-            FinancialPositionDto financialPositionDto = FinancialPositionDto.build(financialPosition);
-            financialPositionDtos.add(financialPositionDto);
-        }
-        return financialPositionDtos;
+    public Long count(){
+        return companyRepository.count();
+    }
+
+    public List<CompanyDto> findAll(Pageable pageable){
+        return companyRepository.findAll(pageable).stream().map((e)-> e.toDto()).collect(Collectors.toList());
+    }
+
+    public List<BalanceSheetDto> findPositionListByCompanyId(Long id){
+        Company company = companyRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 회사코드가 존재하지 않습니다"));
+        List<BalanceSheet> balanceSheets = company.getBalanceSheetList();
+
+        assert balanceSheets != null;
+        List<BalanceSheetDto> balanceSheetDtos = balanceSheets.stream().map((e) -> e.toDto()).collect(Collectors.toList());
+        return balanceSheetDtos;
     }
 }

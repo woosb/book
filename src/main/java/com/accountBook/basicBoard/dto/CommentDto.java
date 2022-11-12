@@ -1,15 +1,22 @@
 package com.accountBook.basicBoard.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.accountBook.basicBoard.domain.entity.Comment;
+import lombok.*;
 
 @Builder
-@Data
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class CommentDto {
     private Long commentId;
     private String content;
+
+    //TODO DTO와 Entity 변수 보충
+    public Comment toEntity(){
+        return Comment.builder().content(this.content).build();
+    }
+
+    public static CommentDto toDto(){
+        return CommentDto.builder().build();
+    }
 }
