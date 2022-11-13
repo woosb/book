@@ -1,10 +1,10 @@
 package com.accountBook.company.service;
 
-import com.accountBook.company.domain.entity.Company;
 import com.accountBook.company.domain.entity.BalanceSheet;
+import com.accountBook.company.domain.entity.Company;
 import com.accountBook.company.domain.repository.CompanyRepository;
-import com.accountBook.company.dto.CompanyDto;
 import com.accountBook.company.dto.BalanceSheetDto;
+import com.accountBook.company.dto.CompanyDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -45,11 +45,12 @@ public class CompanyService {
         return companyRepository.findAll();
     }
 
-    public List<BalanceSheetDto> findPositionListByCompanyId(Long id){
+    public List<BalanceSheetDto> findBalanceSheetByCompanyId(Long id){
         Company company = companyRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 회사코드가 존재하지 않습니다"));
         List<BalanceSheet> balanceSheets = company.getBalanceSheetList();
 
         assert balanceSheets != null;
+//        List<BalanceSheetDto> balanceSheetDtos = balanceSheets.stream().map((e) -> e.toDto()).sorted(Comparator.comparing(BalanceSheetDto::getSubjectName)).sorted(Comparator.comparing(BalanceSheetDto::getKindOfReport)).collect(Collectors.toList());
         List<BalanceSheetDto> balanceSheetDtos = balanceSheets.stream().map((e) -> e.toDto()).collect(Collectors.toList());
         return balanceSheetDtos;
     }

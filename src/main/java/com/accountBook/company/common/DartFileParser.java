@@ -100,6 +100,7 @@ public class DartFileParser {
                         break;
                     }
                 }
+                if(findCompany == null) continue;
 
                 String stdMm         = split[6].trim();
                 String stdYmd        = split[7].trim();
@@ -127,7 +128,8 @@ public class DartFileParser {
                         .kindOfReport(kindOfReport)
                         .currentPeriod(currentPeriod)
                         .priorPeriod(priorPeriod).build();
-
+                System.out.println(kindOfReport);
+                System.out.println(subjectName);
                 if(split.length > 14){
                     build.setBfPriorPeriod(bfPriorPeriod);
                 }

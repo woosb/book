@@ -54,9 +54,12 @@ public class BalanceSheet {
     public BalanceSheetDto toDto(){
         return BalanceSheetDto.builder()
                 .id(this.id)
-                .company(this.company)
+                .companyId(this.company.getId())
                 .subjectCode(this.subjectCode)
                 .subjectName(this.subjectName)
+                .currentPeriod(this.currentPeriod)
+                .priorPeriod(this.priorPeriod)
+                .bfPriorPeriod(this.bfPriorPeriod)
                 .current(this.current)
                 .stdYmd(this.stdYmd)
                 .stdMm(this.stdMm)

@@ -2,22 +2,34 @@ package com.accountBook.company.controller;
 
 import com.accountBook.company.common.DartFileParser;
 import com.accountBook.company.domain.entity.Company;
+import com.accountBook.company.dto.BalanceSheetDto;
 import com.accountBook.company.service.CompanyService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/company")
 @RequiredArgsConstructor
 public class CompanyController {
 
     private final CompanyService companyService;
+
+    @RequestMapping("/detail/{companyId}")
+    public String companyDetail(@PathVariable("companyId") Long companyId, Model model){
+        model.addAttribute("companyId", companyId);
+        List<BalanceSheetDto> balanceSheets = companyService.findBalanceSheetByCompanyId(companyId);
+        model.addAttribute("balanceSheets", balanceSheets);
+        return "companyDetail";
+    }
+
     @RequestMapping("/setCompany")
     public String setCompany() throws IOException, SQLException {
         DartFileParser fileUtil = new DartFileParser();
@@ -53,7 +65,11 @@ public class CompanyController {
 
         List<Company> allCompanies = companyService.findAll();
         List<Company> companies = fileUtil.setBalanceSheet(new File("/D:/Intellij_projects/book/out/production/resources/dart/BS/20221111/2022_3분기보고서_01_재무상태표_20221111.txt"), allCompanies);
-//        companyService.saveAllEntity(companies);
+        companyService.saveAllEntity(companies);
+        companies = fileUtil.setBalanceSheet(new File("/D:/Intellij_projects/book/out/production/resources/dart/BS/20221111/2022_1분기보고서_01_재무상태표_20221112.txt"), allCompanies);
+        companyService.saveAllEntity(companies);
+        companies = fileUtil.setBalanceSheet(new File("/D:/Intellij_projects/book/out/production/resources/dart/BS/20221111/2022_반기보고서_01_재무상태표_20221112.txt"), allCompanies);
+        companyService.saveAllEntity(companies);
 
         return "";
     }

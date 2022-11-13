@@ -31,7 +31,7 @@ public class Company {
     * entity는 변경될 여지가 있지만 api 명세상 반환하는 내용이 변하게 된다면 api를 신뢰할 수 없게 되고 나중에 되돌릴 수 없는 상황이 발생할 수 있기 때문이다.
     *
     * */
-    @OneToMany(mappedBy = "company", cascade= CascadeType.ALL)
+    @OneToMany(mappedBy = "company", cascade= CascadeType.ALL, fetch = FetchType.LAZY)
     private List<BalanceSheet> balanceSheetList = new ArrayList<>();
 
     @Column(name = "CODE")
@@ -53,6 +53,6 @@ public class Company {
                 .market(this.market)
                 .sectorCode(this.sectorCode)
                 .sectorName(this.sectorName)
-                .balanceSheetList(this.balanceSheetList).build();
+                .build();
     }
 }

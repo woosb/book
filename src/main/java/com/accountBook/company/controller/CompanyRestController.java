@@ -23,9 +23,9 @@ public class CompanyRestController {
         return companyService.findAll(pageable);
     }
 
-    @RequestMapping("financialPosition/{companyId}")
-    public List<BalanceSheetDto> getFinancialPosition(@PathVariable("id") Long companyId, Model model){
-        return companyService.findPositionListByCompanyId(companyId);
+    @RequestMapping("balanceSheet/{companyId}")
+    public List<BalanceSheetDto> getBalanceSheet(@PathVariable("companyId") Long id){
+        return companyService.findBalanceSheetByCompanyId(id);
     }
 }
 
