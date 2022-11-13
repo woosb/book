@@ -29,7 +29,6 @@ public class BalanceSheetDto {
                 .company(this.company)
                 .subjectCode(this.subjectCode)
                 .subjectName(this.subjectName)
-                .subjectValue(this.subjectValue)
                 .current(this.current)
                 .stdYmd(this.stdYmd)
                 .stdMm(this.stdMm)

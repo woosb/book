@@ -41,6 +41,10 @@ public class CompanyService {
         return companyRepository.findAll(pageable).stream().map((e)-> e.toDto()).collect(Collectors.toList());
     }
 
+    public List<Company> findAll(){
+        return companyRepository.findAll();
+    }
+
     public List<BalanceSheetDto> findPositionListByCompanyId(Long id){
         Company company = companyRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 회사코드가 존재하지 않습니다"));
         List<BalanceSheet> balanceSheets = company.getBalanceSheetList();

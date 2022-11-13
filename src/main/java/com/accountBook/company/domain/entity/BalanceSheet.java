@@ -2,6 +2,7 @@ package com.accountBook.company.domain.entity;
 
 
 import com.accountBook.company.dto.BalanceSheetDto;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,14 +23,13 @@ public class BalanceSheet {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="company_id")
+    @JsonManagedReference
     private Company company;
 
     @Column(name = "SUBJECT_CODE")
     private String subjectCode;
     @Column(name = "SUBJECT_NAME")
     private String subjectName;
-    @Column(name = "SUBJECT_VALUE")
-    private String subjectValue;
 
     @Column(name = "CURRENT")
     private String current;                    //통화
@@ -56,7 +56,6 @@ public class BalanceSheet {
                 .company(this.company)
                 .subjectCode(this.subjectCode)
                 .subjectName(this.subjectName)
-                .subjectValue(this.subjectValue)
                 .current(this.current)
                 .stdYmd(this.stdYmd)
                 .stdMm(this.stdMm)
