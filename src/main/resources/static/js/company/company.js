@@ -9,14 +9,13 @@ $(document).ready(function () {
     }).done(function (result) {
         let companies;
         result.forEach(function (company) {
-            // companies += "<tr class='company-row' onClick='getBalanceSheet(" + company.id + ")'>";
-            companies += "<tr class='company-row' onclick='detailPage("+company.id+")' >";
-            companies += "<td>" + company.code + "</td>"
-            companies += "<td>" + company.market + "</td>"
-            companies += "<td>" + company.name + "</td>"
-            companies += "<td>" + company.sectorCode + "</td>"
-            companies += "<td>" + company.sectorName + "</td>"
-            companies += "</tr>";
+            companies += `<tr class='company-row' onclick='detailPage(${company.id})'>
+                            <td>${company.code}</td>
+                            <td>${company.market}</td>
+                            <td>${company.name}</td>
+                            <td>${company.sectorCode}</td>
+                            <td>${company.sectorName}</td>
+                         </tr>`
         });
         $("#companyList").html(companies);
     });
