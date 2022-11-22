@@ -190,7 +190,6 @@
             <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
             <!-- TODO 차트 이용//-->
 
-
             <h2>Section title</h2>
             <div class="table-responsive">
                 <table class="table table-striped table-sm" id="companyTable">
@@ -204,13 +203,6 @@
                     </tr>
                     </thead>
                     <tbody id="companyList">
-                    <tr th:each="item : ${CompanyDto}">
-                        <td th:text="CompanyDto.code"></td>
-                        <td th:text="CompanyDto.market"></td>
-                        <td th:text="CompanyDto.name"></td>
-                        <td th:text="CompanyDto.sectorCode"></td>
-                        <td th:text="CompanyDto.sectorName"></td>
-                    </tr>
                     </tbody>
                 </table>
             </div>

@@ -188,7 +188,13 @@
                 </div>
             </div>
             <!-- TODO 차트 이용//-->
-
+            <input th:value="${companyCode}" type="text" id="companyCode" name="companyCode"/>
+            <select id="kindOfReport" name="kindOfReport" onChange="getBalanceSheet()">
+                <option value="quarter1">1분기보고서</option>
+                <option value="quarter2">반기보고서</option>
+                <option value="quarter3">3분기보고서</option>
+                <option value="quarter4">사업보고서</option>
+            </select>
 
             <h2>Section title</h2>
             <div class="table-responsive">
@@ -197,18 +203,16 @@
                     <tr>
                         <th scope="col">항목명</th>
                         <th scope="col">통화</th>
-                        <th scope="col">보고서종류</th>
                         <th scope="col">당기</th>
                         <th scope="col">전기</th>
                         <th scope="col">기준일</th>
                         <th scope="col">기준월</th>
                     </tr>
                     </thead>
-                    <tbody id="companyTableBody">
+                    <tbody id="detailTableBody">
                     <tr th:each="item : ${balanceSheets}">
                         <td th:text="${item.getSubjectName()}"></td>
                         <td th:text="${item.getCurrent()}"></td>
-                        <td th:text="${item.getKindOfReport()}"></td>
                         <td th:text="${item.getCurrentPeriod()}"></td>
                         <td th:text="${item.getPriorPeriod()}"></td>
                         <td th:text="${item.getStdYmd()}"></td>
@@ -232,6 +236,6 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
         integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha"
         crossorigin="anonymous"></script>
-<script src="/dashboard.js"></script>
+</body>
 </body>
 </html>

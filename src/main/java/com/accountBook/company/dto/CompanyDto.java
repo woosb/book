@@ -1,12 +1,9 @@
 package com.accountBook.company.dto;
 
 import com.accountBook.company.domain.entity.Company;
-import com.accountBook.company.domain.entity.BalanceSheet;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-
-import java.util.List;
 
 @Builder
 @Data
@@ -19,7 +16,6 @@ public class CompanyDto {
     private String market;
     private String sectorCode;
     private String sectorName;
-    private List<BalanceSheet> balanceSheetList;
 
     public Company toEntity(){
         return Company.builder()
@@ -29,7 +25,7 @@ public class CompanyDto {
                 .market(this.market)
                 .sectorCode(this.sectorCode)
                 .sectorName(this.sectorName)
-                .balanceSheetList(this.balanceSheetList).build();
+                .build();
     }
 
 }

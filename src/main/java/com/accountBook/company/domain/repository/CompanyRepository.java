@@ -14,6 +14,8 @@ public interface CompanyRepository extends JpaRepository<Company, Long> {
     Page<Company> findAll(Pageable pageable);
     Optional<Company> findById(Long id);
 
+    Optional<Company> findByCode(String code);
+
     @Override
     <S extends Company> List<S> saveAll(Iterable<S> entities);
 }

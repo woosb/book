@@ -2,7 +2,7 @@ package com.accountBook.company.controller;
 
 import com.accountBook.company.common.DartFileParser;
 import com.accountBook.company.domain.entity.Company;
-import com.accountBook.company.dto.BalanceSheetDto;
+import com.accountBook.company.service.BalanceSheetService;
 import com.accountBook.company.service.CompanyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -21,12 +21,12 @@ import java.util.List;
 public class CompanyController {
 
     private final CompanyService companyService;
+    private final BalanceSheetService balanceSheetService;
 
-    @RequestMapping("/detail/{companyId}")
-    public String companyDetail(@PathVariable("companyId") Long companyId, Model model){
-        model.addAttribute("companyId", companyId);
-        List<BalanceSheetDto> balanceSheets = companyService.findBalanceSheetByCompanyId(companyId);
-        model.addAttribute("balanceSheets", balanceSheets);
+    @RequestMapping("/detail/{companyCode}") //TODO kindOfReport -> enum class로 코드 관리 하기.
+    public String companyDetail(@PathVariable("companyCode") String companyCode, Model model){
+        System.out.println(companyCode);
+        model.addAttribute("companyCode", companyCode);
         return "companyDetail";
     }
 
